@@ -1,0 +1,129 @@
+<div class="card card-custom"
+	[ngClass]="{ 'card-body-progress card-body-progress-overlay' : viewLoading }">
+	<div class="card-header">
+		<div class="card-title">
+			<h3 class="card-label">{{getTitle()}}</h3>
+		</div>
+	</div>
+	<form class="form" [formGroup]="customerForm">
+		<div class="card-body">
+
+			<div class="card-body-progress">
+				<mat-spinner [diameter]="20"></mat-spinner>
+			</div>
+
+			<kt-alert *ngIf="hasFormErrors" type="warn" [duration]="30000" [showCloseButton]="true" (close)="onAlertClose($event)">
+				Oh snap! Change a few things up and try submitting again.
+			</kt-alert>
+
+			<div class="form-group row">
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input matInput placeholder="Enter First Name" formControlName="firstName" />
+						<mat-error>First Name is
+							<strong>required</strong>
+						</mat-error>
+						<mat-hint align="start">Please enter
+							<strong>First Name</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input matInput placeholder="Enter Last Name" formControlName="lastName" />
+						<mat-error>Last Name is
+							<strong>required</strong>
+						</mat-error>
+						<mat-hint align="start">Please enter
+							<strong>Last Name</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input matInput placeholder="Enter Login" formControlName="userName" />
+						<mat-error>Login is
+							<strong>required</strong>
+						</mat-error>
+						<mat-hint align="start">Please enter
+							<strong>Login</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="separator separator-dashed my-6"></div>
+			<div class="form-group row">
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input type="email" matInput placeholder="Enter Email" formControlName="email" />
+						<mat-error>Email is
+							<strong>required</strong>
+						</mat-error>
+						<mat-hint align="start">Please enter
+							<strong>Email</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input matInput [matDatepicker]="picker"
+							placeholder="Choose a Date of Birth"
+							formControlName="dob" />
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+						<mat-hint align="start">Please enter
+							<strong>Date of Birth</strong> in 'mm/dd/yyyy' format</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<input type="email" matInput placeholder="Enter IP Address" formControlName="ipAddress" />
+						<mat-error>IP Address
+							<strong>required</strong>
+						</mat-error>
+						<mat-hint align="start">We'll never share customer
+							<strong>IP Address</strong> with anyone else</mat-hint>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="separator separator-dashed my-6"></div>
+			<div class="form-group row">
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<mat-select placeholder="Gender" formControlName="gender">
+							<mat-option value="Female">Female</mat-option>
+							<mat-option value="Male">Male</mat-option>
+						</mat-select>
+						<mat-hint align="start">
+							<strong>Gender</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+				<div class="col-lg-4 kt-margin-bottom-20-mobile">
+					<mat-form-field class="mat-form-field-fluid">
+						<mat-select placeholder="Type" formControlName="type">
+							<mat-option value="0">Business</mat-option>
+							<mat-option value="1">Individual</mat-option>
+						</mat-select>
+						<mat-hint align="start">
+							<strong>Account Type</strong>
+						</mat-hint>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			<div class="d-flex justify-content-between">
+				<div class="mr-2"></div>
+				<div>
+					<button type="button" mat-raised-button [mat-dialog-close]="data.animal" cdkFocusInitial matTooltip="Cancel changes">
+						Cancel
+					</button>&nbsp;
+					<button type="button" mat-raised-button color="primary" (click)="onSubmit()" [disabled]="viewLoading" matTooltip="Save changes">
+						Save
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
